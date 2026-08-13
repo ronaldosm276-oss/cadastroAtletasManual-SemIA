@@ -1,0 +1,3 @@
+nos serviços, colocamos a logica que comandara os componentes
+chamar api, fazer modificações, trabalhar os dados, usamos serviços
+pelo que me lembre usamos funções na outra
