@@ -1,6 +1,6 @@
 <div id="div-form">
     <h2>Cadastro Atleta</h2>
-    <form id="form-atleta">
+    <form id="form-atleta" (submit)="salvarAtleta()">
 
         <label for="nome">Nome  </label>
         <input type="text" name="nome" id="nome" class="input01" required maxlength="80" placeholder="Informe seu nome" [(ngModel)] = "nome">
@@ -12,7 +12,7 @@
         <label for="sexo">  Sexo  </label>
         <input type="radio" name="sexo" id="sexoM" class="btnSelecao" value="M" required  [(ngModel)] = "sexo">Masculino
         <input type="radio" name="sexo" id="sexoF" class="btnSelecao" value="F"  [(ngModel)] = "sexo"> Feminino
-        <input type="radio" name="sexo" id="sexoN" class="btnSelecao" value="N" required  > Não se identificar
+        <input type="radio" name="sexo" id="sexoN" class="btnSelecao" value="N" required [(ngModel)] = "sexo" > Não se identificar
         
         <label for="cep">CEP</label>
         <input type="text" name="cep" id="cep"  class="input02" required maxlength="9" placeholder="Informe seu CEP" [(ngModel)] = "cep">
@@ -32,7 +32,7 @@
 
 
         <div id="div-btns">
-            <button type="submit" id="btnAdd" (click)="exibirDados()"> Cadastrar Atleta </button>
+            <button type="submit" id="btnAdd"> Cadastrar Atleta </button>
             <button type="reset" id="btnLimpar" > Limpar </button>
 
         </div>
