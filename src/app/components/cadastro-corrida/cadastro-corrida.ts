@@ -9,15 +9,20 @@ import { cadastroService } from '../../services/cadastro';
   styleUrl: './cadastro-corrida.css',
 })
 export class CadastroCorrida {
-
+  id = 0
   descricao = ''
   data = ''
   distancia = ''
 
   constructor(private cadastroService: cadastroService){
-
+    
 
   }
+
+  debugExibirTabela(){
+      console.table(this.descricao, this.data, this.distancia)
+    }
+
 
 }
 

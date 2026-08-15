@@ -34,6 +34,8 @@ export class AtletaComponent {
   exibirDados(){
 
     console.log(this.nome, this.cpf, this.sexo, this.ruaLogradouro, this.bairro, this.cidade, this.uf)
+// oq é this? 'Esse'
+// falando do objeto que estamos trabalhando?
 
   }
 
