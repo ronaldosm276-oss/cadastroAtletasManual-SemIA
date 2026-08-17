@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms'
-import { cadastroService } from '../../services/cadastro';
+import { CadastroService } from '../../services/cadastro';
 
 @Component({
   selector: 'app-cadastro-corrida',
@@ -12,15 +12,17 @@ export class CadastroCorrida {
   id = 0
   descricao = ''
   data = ''
-  distancia = ''
+  distancia5 = ''
+  distancia10 = ''
+  distancia25 = ''
 
-  constructor(private cadastroService: cadastroService){
+  constructor(private cadastroService: CadastroService){
     
 
   }
 
   debugExibirTabela(){
-      console.table(this.descricao, this.data, this.distancia)
+      console.log(this.descricao, this.data, this.distancia5)
     }
 
 

@@ -5,7 +5,7 @@ import { Corrida } from '../models/Corrida';
   providedIn: 'root',
 })
 
-export class cadastroService {
+export class CadastroService {
 
   private corridaCad: Corrida[] = [];
 
