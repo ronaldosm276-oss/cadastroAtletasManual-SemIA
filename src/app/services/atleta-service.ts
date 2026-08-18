@@ -1,48 +1,85 @@
 import { Injectable } from '@angular/core';
-import { Pessoa } from '../models/Pessoa';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Atleta } from '../models/Atleta';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class AtletaService {
-  private atletas: Pessoa[] = [];
+  //DECLARAÇÃO CONSTRUTOR
+  constructor(private http: HttpClient) { }
 
-  // sobre private, o que é private: sao elementos que só podem acessados com dot notation
+  //ADICIONAR NA API
+  adicionarAtleta(atleta: Atleta): Observable<Atleta> {
+    const urlApi = `https://6a7f6d923183f5fd884b1a61.mockapi.io/esportearlivre/atleta`
 
-  adicionar(pessoas: Pessoa) {
-    //nao e a forma correta de gerar id
-    pessoas.id = this.atletas.length + 1;
-    this.atletas.push(pessoas);
-
-    
+    return this.http.post<Atleta>(urlApi, atleta)
   }
+
+  //LISTAR ATLETAS NA API
+  listarAtletas(): Observable<Atleta[]> {
+    const urlApi = `https://6a7f6d923183f5fd884b1a61.mockapi.io/esportearlivre/atleta`
+
+    return this.http.get<Atleta[]>(urlApi)
+  }
+
+  //LISTAR ATLETA
+  listarAtleta(idAtleta: number):Observable<Atleta>{
+    const urlApi = `https://6a7f6d923183f5fd884b1a61.mockapi.io/esportearlivre/atleta/${idAtleta}`
+
+    return this.http.get<Atleta>(urlApi)
+  }
+
+  //EXCLUIR NA API
+  exluirAtleta(atleta: Atleta): Observable<Atleta> {
+    const urlApi = `https://6a7f6d923183f5fd884b1a61.mockapi.io/esportearlivre/atleta/${atleta.id}`
+
+    return this.http.delete<Atleta>(urlApi)
+  }
+
+  //ALTERAR NA API
+  alterarAtleta(atleta: Atleta):Observable<Atleta>{
+    const urlApi = `https://6a7f6d923183f5fd884b1a61.mockapi.io/esportearlivre/atleta/${atleta.id}`
+
+    return this.http.put<Atleta>(urlApi, atleta)
+  }
+
+  /*
+  private atletas: Pessoa[] = []
+
+  adicionar(pessoa: Pessoa) {
+    //ARRRRMENGUEEEE PARA GERAR O ID
+    pessoa.id = this.atletas.length + 1
+    
+    this.atletas.push(pessoa)
+  }
+
   listar() {
     console.table(this.atletas)
-    return this.atletas;
+    return this.atletas
   }
 
-  private localizarAtleta(idAtleta: number) {
-    return this.atletas.findIndex((elem) => elem.id === idAtleta);
+  private localizarAtleta(idAtleta: number){
+    return this.atletas.findIndex(elem => elem.id === idAtleta)
   }
-  //porque usou number com n minusculo, o que é issi
-  remover(posicaoArray: number) {
-    this.atletas.splice(1, posicaoArray);
+
+  remover(posicaoArray: number){
+    this.atletas.splice(1,posicaoArray)
   }
 
   remover2(pessoa: Pessoa){
     this.atletas = this.atletas.filter(elem => elem.id !== pessoa.id)
   }
-  //outra maneira, usa filter, ve todos os elementos, excluir aquele que id elem.id for diferente de pessoa.id e cria uma nova array sem esse elemento
-  alterar(pessoa: Pessoa) {
-    let posArray = this.localizarAtleta(pessoa.id);
 
-    if (posArray >= 0) {
-      this.atletas[posArray] = pessoa;
+  alterar(pessoa : Pessoa){
+    let posArray = this.localizarAtleta(pessoa.id)
+
+    if(posArray >=0){
+      this.atletas[posArray] = pessoa
     }
-  }
 
+  }*/
 
 }
-
 

@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home-component/home-component';
 import { AtletaComponent } from './components/atleta-component/atleta-component';
 import { CadastroCorrida } from './components/cadastro-corrida/cadastro-corrida';
-
+import {AtletaListaComponent} from './components/atleta-lista/atleta-lista'
 export const routes: Routes = [
 
     {
@@ -28,7 +28,11 @@ export const routes: Routes = [
         path: 'cadastroCorrida',
         component:CadastroCorrida
     }
-
+,     {
+        path:"listaatleta",
+        component:AtletaListaComponent
+    }
+    
 ];
 // sobre routes, esse path é 'linkDoSite/pathQualquer
 // E chama o componente com component:nomeComponent
