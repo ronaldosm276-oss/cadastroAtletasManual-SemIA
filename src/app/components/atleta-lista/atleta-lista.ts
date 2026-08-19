@@ -10,59 +10,53 @@ import { Router } from '@angular/router';
   styleUrl: './atleta-lista.css',
 })
 export class AtletaListaComponent {
-
   //DECLARAÇÃO ARRAY DO TIPO PESSOA
   //listaAtletas: Atleta[] = []
-  listaAtletas = signal<Atleta[]>([])
+  listaAtletas = signal<Atleta[]>([]);
 
   //DECLARAÇÃO CONSTRUTOR
-  constructor(private router: Router, private http: AtletaService) { }
+  constructor(
+    private router: Router,
+    private http: AtletaService,
+  ) {}
 
   //EXECUTAR INSTRUÇÕES AO CARREGAR CRIAR O COMPONENTE
   ngOnInit() {
-    this.listarAtletas()
+    this.listarAtletas();
   }
 
   //LISTAR OS ATLETAS
   listarAtletas() {
-    this.http.listarAtletas()
-      .subscribe({
-        next: (dados) => {
-          //this.listaAtletas = [...dados].sort((a, b) => a.nome.localeCompare(b.nome))
-          this.listaAtletas.set([...dados].sort((a, b) => a.nome.localeCompare(b.nome)))
-        },
-        error: (msgErro) => {
-          console.log("Erro ao cadastrar  o atleta ", msgErro)
-        }
-
-      })
-
+    this.http.listarAtletas().subscribe({
+      next: (dados) => {
+        //this.listaAtletas = [...dados].sort((a, b) => a.nome.localeCompare(b.nome))
+        this.listaAtletas.set([...dados].sort((a, b) => a.nome.localeCompare(b.nome)));
+      },
+      error: (msgErro) => {
+        console.log('Erro ao cadastrar  o atleta ', msgErro);
+      },
+    });
   }
 
   //EXCLUIR ATLETA
-  excluirAtleta(atleta: Atleta){
-    if(confirm(`Deseja excluir ${atleta.nome} da competição? `)){
-      this.http.exluirAtleta(atleta)
-      .subscribe({
-        next:(dados)=>{
-           this.listaAtletas.update(elem =>
-            elem.filter(a => a.id !== atleta.id)
-          );
-          
-          console.log('Atleta excluído com Sucesso ', dados)
+  excluirAtleta(atleta: Atleta) {
+    if (confirm(`Deseja excluir ${atleta.nome} da competição? `)) {
+      this.http.exluirAtleta(atleta).subscribe({
+        next: (dados) => {
+          this.listaAtletas.update((elem) => elem.filter((a) => a.id !== atleta.id));
+
+          console.log('Atleta excluído com Sucesso ', dados);
         },
         error: (msgErro) => {
-          console.log("Erro ao Excluir  o atleta ", msgErro)
-        }
-      })
-
+          console.log('Erro ao Excluir  o atleta ', msgErro);
+        },
+      });
     }
-    this.ngOnInit()
+    this.ngOnInit();
   }
 
   //ALTERAR DADOS
-  buscarPessoa(idAtleta: Atleta){
-    this.router.navigate(['/cadastroatleta', idAtleta])
+  buscarPessoa(idAtleta: Atleta) {
+    this.router.navigate(['/cadastroatleta', idAtleta.id]);
   }
-
 }
