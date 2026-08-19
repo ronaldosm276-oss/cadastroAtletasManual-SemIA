@@ -28,5 +28,7 @@ export class CadastroCorrida {
 
 }
 
+
+
 //O tonto usou Claude para corrigir um erro de DI, mas nunca olhou o diff entre o que a IA sugeriu e o que ele colou de volta no arquivo real.
 //Injetou o model (Corrida) em vez do service (cadastroService) e ficou reenviando o mesmo arquivo quebrado três vezes, achando que o erro ia sumir sozinho.
